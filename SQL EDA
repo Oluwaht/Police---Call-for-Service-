@@ -1,0 +1,61 @@
+-- View Entire Dataset
+
+SELECT *
+FROM Calls.police
+
+-- QUESTION 1: How many calls happened for each day in December? Also, what day is the highest call count?
+
+SELECT
+    Date,
+    COUNT(*) AS CallCount
+FROM
+    Calls.police
+WHERE
+    Date >= '2023-12-01' AND Date <= '2023-12-31'
+GROUP BY
+    Date
+ORDER BY
+    CallCount DESC;
+
+
+-- QUESTION 2: What is the most common source of calls coming from?
+
+SELECT
+    Callsource,
+    COUNT(*) AS CallCount
+FROM
+    Calls.police 
+GROUP BY
+    Callsource
+ORDER BY
+    CallCount DESC
+
+
+-- QUESTION 3: What are the most common purposes for police calls in December 2023?
+
+SELECT
+    Nature,
+    COUNT(*) AS CallCount
+FROM
+    Calls.police
+WHERE
+    Date >= '2023-12-01' AND Date <= '2023-12-31'
+GROUP BY
+    Nature
+ORDER BY
+    CallCount DESC;
+
+
+-- QUESTION 4: Which streets in Sugar Land had the highest number of police calls in December 2023?
+
+SELECT
+    Street,
+    COUNT(*) AS CallCount
+FROM
+    Calls.police
+WHERE
+    Date >= '2023-12-01' AND Date <= '2023-12-31'
+GROUP BY
+    Street
+ORDER BY
+    CallCount DESC;
