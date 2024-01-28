@@ -59,3 +59,29 @@ GROUP BY
     Street
 ORDER BY
     CallCount DESC;
+
+
+-- QUESTION 5: What is the average calls per day of the week?
+
+SELECT
+  EXTRACT(DAYOFWEEK FROM Date) AS date,
+  AVG(call_count) AS average_calls_per_day
+FROM (
+  SELECT
+    Date,
+    COUNT(*) AS call_count
+  FROM
+    Calls.police 
+  WHERE
+    EXTRACT(MONTH FROM Date) = 12 AND EXTRACT(YEAR FROM Date) = 2023
+  GROUP BY
+    Date
+)
+GROUP BY
+  date
+ORDER BY
+  date
+
+
+
+
